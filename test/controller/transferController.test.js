@@ -30,7 +30,7 @@ describe('Transer Controller', () => {
                 .send({ 
                     from: "Deborah",
                     to: "Flavio",
-                    amount: 100
+                    amount: 1000
                 });
 
             expect(resposta.status).to.equal(404);
@@ -38,6 +38,26 @@ describe('Transer Controller', () => {
             
             sinon.restore();
         });
-    });
 
-})
+        it('Usando Mocks: Quando informo dados válidos recebo 201', async () => {
+            const mockTransfer = { from: "Deborah", to: "Flavio", amount: 100, date: new Date() };
+            const transferServiceMock = sinon.stub(transferService, 'createTransfer');
+            transferServiceMock.returns({ transfer: mockTransfer, status: 201 });
+
+            const resposta = await request(app)
+                .post('/transfer')
+                .send({ 
+                    from: "Deborah",
+                    to: "Flavio",
+                    amount: 100
+                });
+
+            expect(resposta.status).to.equal(201);
+            expect(resposta.body).to.have.property('from', 'Deborah');
+            expect(resposta.body).to.have.property('to', 'Flavio');
+            expect(resposta.body).to.have.property('amount', 100);
+
+            sinon.restore();
+            });
+        });
+    });
