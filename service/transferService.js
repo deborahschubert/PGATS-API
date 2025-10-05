@@ -6,7 +6,7 @@ function createTransfer({ from, to, amount }) {
   const recipient = findUserByUsername(to);
   if (!sender || !recipient) {
     return {
-      error: 'Usuário ou remetente ou destinatário não encontrado.',
+      error: 'Usuário remetente ou destinatário não encontrado.',
       status: 404
     };
   }
