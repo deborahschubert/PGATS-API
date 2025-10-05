@@ -1,6 +1,18 @@
 {
+  "name": "pgats-api",
+  "description": "Esta API permite o registro, login, consulta de usuários e transferencias",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": { 
+    "test": "mocha \"test/**/*.test.js\" --timeout 1000",
+    "start": "node server.js"
+  },
   "dependencies": {
+    "chai": "^6.2.0",
     "express": "^5.1.0",
+    "mocha": "^11.7.4",
+    "sinon": "^21.0.0",
+    "supertest": "^7.1.4",
     "swagger-ui-express": "^5.0.1"
   }
 }
